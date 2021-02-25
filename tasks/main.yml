@@ -1,0 +1,35 @@
+---
+# tasks file for ansible-update
+
+- name: Update repos and cache
+  apt: 
+    update_cache: yes 
+    cache_valid_time: 3600
+
+- name: Upgrade the OS
+  apt: 
+    upgrade: dist
+
+- name: Install unattended-upgrades tools
+  apt:
+    name:
+      - unattended-upgrades
+    state: present
+    update_cache: yes
+
+- name: Enable automatic updates and upgrades
+  replace:
+    path: /etc/apt/apt.conf.d/50unattended-upgrades
+    after: 'Unattended-Upgrade::Allowed-Origins {'
+    before: '};'
+    replace: '{{ item.replace }}'
+    regexp: '{{ item.regexp }}'
+  with_items:
+    - {regexp: '\/\/\s*"\${distro_id}:\${distro_codename}";', replace: '        "${distro_id}:${distro_codename}";'}
+    - {regexp: '\/\/\s*"\${distro_id}:\${distro_codename}-security";', replace: '        "${distro_id}:${distro_codename}-security";'}
+    - {regexp: '\/\/\s*"\${distro_id}ESMApps:\${distro_codename}-apps-security";', replace: '        "${distro_id}ESMApps:${distro_codename}-apps-security";'}
+    - {regexp: '\/\/\s*"\${distro_id}ESM:\${distro_codename}-infra-security";', replace: '        "${distro_id}ESM:${distro_codename}-infra-security";'}
+    - {regexp: '\/\/\s*"\${distro_id}:\${distro_codename}-updates";', replace: '        "${distro_id}:${distro_codename}-updates";'}
+  notify:
+    - Restart unattended upgrades
+
