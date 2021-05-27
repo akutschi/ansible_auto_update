@@ -1,5 +1,7 @@
 # Ansible Auto Update
 
+[![CI](https://github.com/akutschi/ansible_auto_update/actions/workflows/ci.yml/badge.svg)](https://github.com/akutschi/ansible_auto_update/actions/workflows/ci.yml)
+
 This is a very simple role to update the whole OS.
 On top of that unattended upgrades are configured and enabled. 
 Unattended upgrades are in a way configured not that just security updates will be installed, but all possible updates will be installed when they are available.
