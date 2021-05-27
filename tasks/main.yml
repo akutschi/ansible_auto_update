@@ -42,4 +42,3 @@
     - {regexp: '\/\/\s*"\${distro_id}:\${distro_codename}-updates";', replace: '        "${distro_id}:${distro_codename}-updates";'}
   notify:
     - Restart unattended upgrades
-
