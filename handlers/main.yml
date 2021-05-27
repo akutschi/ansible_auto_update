@@ -1,5 +1,5 @@
 ---
-# handlers file for ansible-update
+# handlers file for ansible_auto_update
 
 - name: Restart unattended upgrades
   systemd: 
