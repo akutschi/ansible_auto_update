@@ -1,0 +1,15 @@
+// Enable the update/upgrade script (0=disable)
+APT::Periodic::Enable "{{ apt_auto_update_enable }}";
+
+// Do "apt-get update" automatically every n-days (0=disable)
+APT::Periodic::Update-Package-Lists "{{ apt_auto_update_list_schedule }}";
+
+// Run the "unattended-upgrade" security upgrade script every n-days (0=disabled)
+// Requires "unattended-upgrades" and will write a log in /var/log/unattended-upgrades
+APT::Periodic::Unattended-Upgrade "{{ apt_auto_update_unattended_schedule }}";
+
+// Do "apt-get upgrade --download-only" every n-days (0=disable)
+APT::Periodic::Download-Upgradeable-Packages "{{ apt_auto_update_download_schedule }}";
+
+// Do "apt-get autoclean" every n-days (0=disable)
+APT::Periodic::AutocleanInterval "{{ apt_auto_update_clean_schedule }}";

@@ -1,4 +1,4 @@
-# Ansible Update
+# Ansible Auto Update
 
 This is a very simple role to update the whole OS.
 On top of that unattended upgrades are configured and enabled. 
@@ -6,12 +6,35 @@ Unattended upgrades are in a way configured not that just security updates will 
 
 ## Requirements
 
-- This version requires Ubuntu 20.04 LTS
-- Ansible 2.9.x, this role is **not tested with Ansible 2.10** yet.
+This role does not have any requirements.
+
+## Coverage
+
+Any combination of the following is tested:
+
+- Operating System
+  - Ubuntu 20.04 LTS or
+  - Debian 10
+- Ansible
+  - 2.9.x or
+  - 3.x or
+  - 4.x 
+- Python
+  - 3.8 or
+  - 3.9
 
 ## Role Variables
 
-There are no settable variables in this role.
+Here you can see all settable variables for this role. The defaults can be found in `defaults/main.yml`. 
+The defaults are chosen in a reasonable way, so that no additional parameters must be set to the role.
+
+| Variable | Default | Description
+|-|-|-|
+| apt_auto_update_enable | `1` | Enables/disables automatic updates |
+| apt_auto_update_list_schedule | `1` | `apt-get update` every `n` days |
+| apt_auto_update_unattended_schedule | `1` | Run `unattended-upgrade` every `n` days |
+| apt_auto_update_download_schedule | `1` | Download upgradeable packages every `n` days |
+| apt_auto_update_clean_schedule | `21` | Clean up local cache every `n` days |
 
 ## Dependencies
 
@@ -26,7 +49,7 @@ Just clone or download this role into your `roles` folder and set up the playboo
 ---
 - hosts: servers
   roles:
-      - ansible-update
+      - ansible_auto_update
 ```
 
 # License

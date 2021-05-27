@@ -1,2 +1,8 @@
 ---
-# defaults file for ansible-update
+# defaults file for ansible_auto_update
+
+apt_auto_update_enable:  '1'
+apt_auto_update_list_schedule: '1'
+apt_auto_update_unattended_schedule: '1'
+apt_auto_update_download_schedule: '1'
+apt_auto_update_clean_schedule: '21'
